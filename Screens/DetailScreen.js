@@ -7,8 +7,10 @@ import {
   TouchableWithoutFeedback,
   Animated,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
@@ -16,6 +18,7 @@ export default function DetailScreen({ route }) {
   const { word } = route.params;
   const flipAnim = useRef(new Animated.Value(0)).current;
   const [flipped, setFlipped] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const frontInterpolate = flipAnim.interpolate({
     inputRange: [0, 180],
@@ -35,10 +38,15 @@ export default function DetailScreen({ route }) {
     setFlipped(!flipped);
   };
 
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <LinearGradient colors={['#89f7fe', '#66a6ff']} style={styles.container}>
       <TouchableWithoutFeedback onPress={flipCard}>
         <View>
+          {/* Front Side */}
           <Animated.View
             style={[
               styles.card,
@@ -50,9 +58,20 @@ export default function DetailScreen({ route }) {
             <Image source={{ uri: word.image }} style={styles.image} />
             <Text style={styles.word}>{word.word}</Text>
             {word.category && <Text style={styles.category}>{word.category}</Text>}
+
+            {/* Heart Icon (Front Only) */}
+            <TouchableOpacity onPress={toggleFavorite} style={styles.heartButton}>
+              <AntDesign
+                name={isFavorite ? 'heart' : 'hearto'}
+                size={28}
+                color={isFavorite ? 'red' : '#aaa'}
+              />
+            </TouchableOpacity>
+
             <Text style={styles.instruction}>Tap to see definition</Text>
           </Animated.View>
 
+          {/* Back Side */}
           <Animated.View
             style={[
               styles.card,
@@ -136,5 +155,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#ccc',
     fontStyle: 'italic',
+  },
+  heartButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
   },
 });
