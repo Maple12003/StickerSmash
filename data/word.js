@@ -1,0 +1,51 @@
+export const words = [
+  {
+    id: '1',
+    word: 'Abundant',
+    definition: 'Existing or available in large quantities',
+    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?fit=crop&w=800&q=80',
+    category: 'General',
+  },
+  {
+    id: '2',
+    word: 'Benevolent',
+    definition: 'Well meaning and kindly',
+    image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?fit=crop&w=800&q=80',
+    category: 'Personality',
+  },
+  {
+    id: '3',
+    word: 'Candid',
+    definition: 'Truthful and straightforward',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=800&q=80',
+    category: 'Communication',
+  },
+  {
+    id: '4',
+    word: 'Aurora',
+    definition: 'A natural light display in the Earth’s sky, mostly in high-latitude regions.',
+    image: 'https://images.unsplash.com/photo-1500048993953-d23a436266cf?fit=crop&w=800&q=80',
+    category: 'Nature',
+  },
+  {
+    id: '5',
+    word: 'Oasis',
+    definition: 'A fertile spot in a desert where water is found.',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?fit=crop&w=800&q=80',
+    category: 'Geography',
+  },
+  {
+    id: '6',
+    word: 'Eclipse',
+    definition: 'An astronomical event where one celestial body moves into the shadow of another.',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?fit=crop&w=800&q=80',
+    category: 'Astronomy',
+  },
+  {
+    id: '7',
+    word: 'Symphony',
+    definition: 'An elaborate musical composition for full orchestra.',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?fit=crop&w=800&q=80',
+    category: 'Music',
+  },
+];
