@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
+import * as Speech from 'expo-speech';
 
 const { width } = Dimensions.get('window');
 
@@ -42,6 +43,13 @@ export default function DetailScreen({ route }) {
     setIsFavorite(!isFavorite);
   };
 
+  const speakWord = () => {
+    Speech.speak(word.word, {
+      language: 'en',
+      rate: 0.8,
+    });
+  };
+
   return (
     <LinearGradient colors={['#89f7fe', '#66a6ff']} style={styles.container}>
       <TouchableWithoutFeedback onPress={flipCard}>
@@ -59,13 +67,18 @@ export default function DetailScreen({ route }) {
             <Text style={styles.word}>{word.word}</Text>
             {word.category && <Text style={styles.category}>{word.category}</Text>}
 
-            {/* Heart Icon (Front Only) */}
+            {/* Heart Icon */}
             <TouchableOpacity onPress={toggleFavorite} style={styles.heartButton}>
               <AntDesign
                 name={isFavorite ? 'heart' : 'hearto'}
                 size={28}
                 color={isFavorite ? 'red' : '#aaa'}
               />
+            </TouchableOpacity>
+
+            {/* Speaker Icon */}
+            <TouchableOpacity onPress={speakWord} style={styles.speakerButton}>
+              <Feather name="volume-2" size={24} color="#333" />
             </TouchableOpacity>
 
             <Text style={styles.instruction}>Tap to see definition</Text>
@@ -160,5 +173,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     right: 20,
+  },
+  speakerButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
 });
