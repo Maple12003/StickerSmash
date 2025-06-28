@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import * as Speech from 'expo-speech';
 
 const { width } = Dimensions.get('window');
@@ -19,7 +19,6 @@ export default function DetailScreen({ route }) {
   const { word } = route.params;
   const flipAnim = useRef(new Animated.Value(0)).current;
   const [flipped, setFlipped] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const frontInterpolate = flipAnim.interpolate({
     inputRange: [0, 180],
@@ -37,10 +36,6 @@ export default function DetailScreen({ route }) {
       useNativeDriver: true,
     }).start();
     setFlipped(!flipped);
-  };
-
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
   };
 
   const speakWord = () => {
@@ -66,15 +61,6 @@ export default function DetailScreen({ route }) {
             <Image source={{ uri: word.image }} style={styles.image} />
             <Text style={styles.word}>{word.word}</Text>
             {word.category && <Text style={styles.category}>{word.category}</Text>}
-
-            {/* Heart Icon */}
-            <TouchableOpacity onPress={toggleFavorite} style={styles.heartButton}>
-              <AntDesign
-                name={isFavorite ? 'heart' : 'hearto'}
-                size={28}
-                color={isFavorite ? 'red' : '#aaa'}
-              />
-            </TouchableOpacity>
 
             {/* Speaker Icon */}
             <TouchableOpacity onPress={speakWord} style={styles.speakerButton}>
@@ -168,11 +154,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#ccc',
     fontStyle: 'italic',
-  },
-  heartButton: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
   },
   speakerButton: {
     position: 'absolute',
